@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Product owner's dashboard";
+}
+
+<div class="container" ng-app="developer" ng-controller="developerCtrl">
+    <h3>Product owner's dashboard - <small>Welcome <span ng-bind="user.firstname"></span>&nbsp;<span ng-bind="user.lastname"></span></small></h3>
+    <div>
+        <button type="button" id="accountBtn" ng-click="getMyDetails();" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-edit"></span> Edit my account
+        </button>
+        <user-dialog></user-dialog>
+    </div>
+</div>
+<script src="~/lib/angularjs/angular.js" asp-append-version="true"></script>
+<script src="~/js/Developer.js" asp-append-version="true"></script>

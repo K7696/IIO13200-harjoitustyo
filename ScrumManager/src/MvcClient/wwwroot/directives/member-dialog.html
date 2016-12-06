@@ -1,0 +1,63 @@
+<div class="modal fade" id="member-modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 ng-show="editMember" class="modal-title">Edit member</h4>
+                <h4 ng-show="newMember" class="modal-title">New member</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Firstname</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeMember.firstname" placeholder="Firstname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Lastname</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeMember.lastname" placeholder="Lastname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" ng-model="activeMember.email" placeholder="Email" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" ng-model="activeMember.password" placeholder="Password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Confirm password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" placeholder="Confirm password" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeMember.phonenumber" placeholder="Phone" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" ng-model="activeMember.description" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-show="editMember" ng-click="saveMemberDetails();" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-success" ng-show="newMember" ng-click="addMember();" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="modal fade" id="project-modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 ng-show="editProject" class="modal-title">Edit project</h4>
+                <h4 ng-show="newProject" class="modal-title">New project</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Code</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeProject.shortCode" placeholder="Code" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeProject.name" placeholder="Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Start date</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeProject.startDate" placeholder="Start date" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Deadline</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeProject.deadline" placeholder="Deadline" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" ng-model="activeProject.description" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-show="editProject" ng-click="saveProjectDetails();" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-success" ng-show="newProject" ng-click="addProject();" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

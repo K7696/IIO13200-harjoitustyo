@@ -1,0 +1,200 @@
+﻿@{
+    ViewData["Title"] = "Developer dashboard";
+}
+
+<div class="" ng-app="developer" ng-controller="developerCtrl">
+    <div class="">
+        <h3>Developer dashboard - <small>Welcome <span ng-bind="user.firstname"></span>&nbsp;<span ng-bind="user.lastname"></span></small></h3>
+        <div class="col-md-12">
+            <button type="button" id="accountBtn" ng-click="getMyDetails();" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-edit"></span> Edit my account
+            </button>
+            <user-dialog></user-dialog>
+        </div>
+    </div>
+    <div class="">
+        <div class="col-md-12">
+            <h4>My tasks</h4>
+            <p><b>My remaining work:</b> <span ng-bind="myRemainingWork"></span> h</p>
+            <task-dialog></task-dialog>
+            <div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Remaining work</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items">
+                            <td>
+                                <button type="button" ng-click="getItemDetails(item.itemId);" class="btn btn-default btn-sm taskBtn">
+                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                </button>
+                            </td>
+                            <td>
+                                <span ng-bind="item.shortCode"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="item.name"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="item.workLeft"></span>
+                            </td>
+                            <td>
+                              <span>
+                                {{item.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {{item.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> 
+    <div class="">
+        <div class="col-md-12">
+            <h4>Current sprint backlog</h4>
+            <div>
+
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="col-md-12">
+            <h4>Product backlog</h4>
+            <div>
+                <button data-toggle="collapse" ng-show="viewProductBacklogButton" ng-click="getProductBacklog();" data-target="#backlog">View product backlog</button>
+                <button data-toggle="collapse" ng-show="hideProductBacklogButton" ng-click="hideProductBacklog();" data-target="#backlog">Hide product backlog</button>
+                <story-dialog></story-dialog>
+            </div>
+            <div id="backlog" class="collapse">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Story</th>
+                            <th>Priority</th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Work left</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="story in stories">
+                        <tr>
+                            <td>
+                                <button type="button" ng-click="getStoryDetails(story.storyId);" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                </button>
+                                <button type="button" ng-click="addNewItem(story.storyId);" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> New task
+                                </button>
+                            </td>
+                            <td>
+                                <span ng-bind="story.priority"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="story.shortCode"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="story.name"></span>
+                            </td>
+                            <td>
+                                <span></span>
+                            </td>
+                            <td>
+                              <span>
+                                {{story.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {{story.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="item in story.tasks">
+                          <td>
+                            <span style="margin-left:1.5em;">
+                              <button type="button" ng-click="getItemDetails(item.itemId);" class="btn btn-default btn-sm taskBtn">
+                                <span class="glyphicon glyphicon-edit"></span> Edit
+                              </button>
+                            </span>
+                          </td>
+                          <td></td>
+                          <td>
+                            <span ng-bind="item.shortCode"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="item.name"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="item.workLeft"></span>
+                          </td>
+                          <td>
+                            <span>
+                              {{item.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
+                          </td>
+                          <td>
+                            <span>
+                              {{item.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="col-md-12">
+            <h4><span ng-bind="team.name"></span></h4>
+            <div>
+                <button data-toggle="collapse" ng-show="viewMembersButton" ng-click="getTeam();" data-target="#team">View members</button>
+                <button data-toggle="collapse" ng-show="hideMembersButton" ng-click="hideTeam();" data-target="#team">Hide members</button>
+            </div>
+            <div id="team" class="collapse">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Member</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="person in team.persons">
+                            <td>
+                                <span ng-bind="person.firstname"></span>
+                                <span ng-bind="person.lastname"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="person.role.name"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="person.email"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="person.phonenumber"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/lib/angular/angular.js" asp-append-version="true"></script>
+<script src="~/js/Developer.js" asp-append-version="true"></script>

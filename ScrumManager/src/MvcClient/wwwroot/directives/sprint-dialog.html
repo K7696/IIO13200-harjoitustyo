@@ -1,0 +1,51 @@
+<div class="modal fade" id="sprint-modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 ng-show="editSprint" class="modal-title">Edit sprint</h4>
+                <h4 ng-show="!editSprint" class="modal-title">New sprint</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Code</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeSprint.shortCode" placeholder="Code" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeSprint.name" placeholder="Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Start date</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeSprint.startDate" placeholder="Start date" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">End date</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeSprint.endDate" placeholder="End date" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" ng-model="activeSprint.description" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-show="editSprint" ng-click="saveSprintDetails();" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-success" ng-show="!editSprint" ng-click="addSprint();" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

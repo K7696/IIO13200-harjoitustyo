@@ -1,0 +1,51 @@
+<div class="modal fade" id="story-modal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 ng-show="editStory" class="modal-title">Edit story</h4>
+                <h4 ng-show="newStory" class="modal-title">New story</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Code</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeStory.shortCode" placeholder="Code" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeStory.name" placeholder="Name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" ng-model="activeStory.description" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Acceptance criteria</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" ng-model="activeStory.acceptanceCriteria" placeholder="Acceptance criteria"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Priority</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="activeStory.priority" placeholder="Work left" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-show="newStory" class="btn btn-success" ng-click="addStory();" data-dismiss="modal">Save</button>
+                <button type="button" ng-show="editStory" class="btn btn-success" ng-click="saveStoryDetails();" data-dismiss="modal">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

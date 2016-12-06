@@ -1,0 +1,173 @@
+﻿@{
+    ViewData["Title"] = "Scrum master's dashboard";
+}
+
+<div class="container" ng-app="developer" ng-controller="developerCtrl">
+    <div class="container">
+        <h3>Scrum master's dashboard - <small>Welcome <span ng-bind="user.firstname"></span>&nbsp;<span ng-bind="user.lastname"></span></small></h3>
+        <div class="col-md-12">
+            <button type="button" id="accountBtn" ng-click="getMyDetails();" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-edit"></span> Edit my account
+            </button>
+            <user-dialog></user-dialog>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Projects</h3>
+        <div class="col-md-12">
+            <div>
+                <button data-toggle="collapse" ng-show="viewProjectsButton" ng-click="getProjects();" data-target="#projects">View projects</button>
+                <button data-toggle="collapse" ng-show="hideProjectsButton" ng-click="hideProjects();" data-target="#projects">Hide projects</button>
+            </div>
+            <project-dialog></project-dialog>     
+            <sprint-dialog></sprint-dialog>     
+        </div>
+        <div id="projects" class="collapse">
+            <div class="col-md-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button type="button" ng-click="addNewProject();" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> New project
+                                </button>
+                            </th>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Start date</th>
+                            <th>Deadline</th>
+                            <th>Created</th>
+                            <th>Modified</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="project in projects">
+                        <tr>
+                            <td>
+                                <button type="button" ng-click="getProjectDetails(project.projectId);" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> Edit
+                                </button>
+                              <button type="button" ng-click="addNewSprint(project.projectId);" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus"></span> New sprint
+                              </button>
+                            </td>
+                            <td>
+                                <span ng-bind="project.shortCode"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="project.name"></span>
+                            </td>
+                            <td>
+                              <span>
+                                {{project.startDate | date:"MM-dd-yyyy"}}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {{project.deadline | date:"MM-dd-yyyy"}}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {{project.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
+                            </td>
+                            <td>
+                              <span>
+                                {{project.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                              </span>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="sprint in project.sprints">
+                          <td>
+                            <span style="margin-left:1.5em;">
+                              <button type="button" ng-click="getSprintDetails(sprint.sprintId);" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus"></span> Edit
+                              </button>
+                            </span>                         
+                          </td>
+                          <td>
+                            <span ng-bind="sprint.shortCode"></span>
+                          </td>
+                          <td>
+                            <span ng-bind="sprint.name"></span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.startDate | date:"MM-dd-yyyy"}}
+                            </span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.endDate | date:"MM-dd-yyyy"}}
+                            </span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.created | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
+                          </td>
+                          <td>
+                            <span>
+                              {{sprint.modified | date:"MM-dd-yyyy ' ' h:mma"}}
+                            </span>
+                          </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-md-12">
+            <h4><span ng-bind="team.name"></span></h4>
+            <div>
+                <button data-toggle="collapse" ng-show="viewMembersButton" ng-click="getTeam();" data-target="#team">View members</button>
+                <button data-toggle="collapse" ng-show="hideMembersButton" ng-click="hideTeam();" data-target="#team">Hide members</button>
+            </div>
+            <div id="team" class="collapse">
+                <div class="col-md-12">
+                    <member-dialog></member-dialog>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button type="button" ng-click="addNewPerson(team.teamId);" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span> New member
+                                </button>
+                            </th>
+                            <th>Member</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="person in team.persons">
+                            <td>
+                                <button type="button" ng-click="getPersonDetails(person.personId);" class="btn btn-default btn-sm taskBtn">
+                                    <span class="glyphicon glyphicon-edit"></span> Edit
+                                </button>
+                            </td>
+                            <td>
+                                <span ng-bind="person.firstname"></span>
+                                <span ng-bind="person.lastname"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="person.role.name"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="person.email"></span>
+                            </td>
+                            <td>
+                                <span ng-bind="person.phonenumber"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/lib/angular/angular.js" asp-append-version="true"></script>
+<script src="~/js/Developer.js" asp-append-version="true"></script>
